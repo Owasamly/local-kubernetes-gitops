@@ -1,0 +1,28 @@
+# Environment variables and secrets
+.env
+.env.*
+*.secret
+secrets/
+*secret*.yaml
+*secret*.yml
+
+# Kubernetes credentials and local configuration
+kubeconfig*
+.kube/
+*.kubeconfig
+
+# Helm-generated packages and dependencies
+*.tgz
+charts/*/charts/
+charts/*/Chart.lock
+
+# Local development files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
