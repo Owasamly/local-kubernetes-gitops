@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Owasamly/local-kubernetes-gitops.git
     targetRevision: main
-    path: k8s
+    path: charts/demo-app
 
   destination:
     server: https://kubernetes.default.svc

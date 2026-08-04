@@ -1,0 +1,17 @@
+replicaCount: 2
+
+image:
+  repository: demo-app
+  tag: manual
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: true
+  className: traefik
+  path: /
+  pathType: Exact
