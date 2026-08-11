@@ -13,12 +13,12 @@ ports:
     nodeFilters:
       - loadbalancer
 
-nodeLabels:
-  - label: workload=application
-    nodeFilters:
-      - agent:*
-
 options:
+  k3s:
+    nodeLabels:
+      - label: workload=application
+        nodeFilters:
+          - "agent:*"
   k3d:
     wait: true
     timeout: 120s
