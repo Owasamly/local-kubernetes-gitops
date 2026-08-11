@@ -1,0 +1,27 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: gitops-dev
+
+servers: 1
+agents: 2
+
+image: rancher/k3s:v1.35.5-k3s1
+
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+
+nodeLabels:
+  - label: workload=application
+    nodeFilters:
+      - agent:*
+
+options:
+  k3d:
+    wait: true
+    timeout: 120s
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true

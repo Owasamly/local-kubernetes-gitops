@@ -1,0 +1,10 @@
+The demo application is managed through Git by Argo CD.
+
+Application URL:
+  http://{{ .Values.ingress.host }}:8080
+
+Check the workload:
+  kubectl get deployment,pods,service,ingress -n {{ .Release.Namespace }}
+
+Run the Helm connection test:
+  helm test {{ .Release.Name }} -n {{ .Release.Namespace }}
