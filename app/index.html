@@ -1,15 +1,188 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Local Kubernetes GitOps</title>
-</head>
-<body>
-  <main>
-    <h1>Local Kubernetes GitOps</h1>
-    <p>This application is running inside a Kubernetes Pod.</p>
-    <p>Deployment method: GitOps - Synced by ArgoCD</p>
-  </main>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local Kubernetes GitOps</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: #090d18;
+        color: #e7edf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(53, 114, 239, 0.18),
+            transparent 35%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(120, 67, 233, 0.14),
+            transparent 35%
+          ),
+          #090d18;
+      }
+
+      main {
+        width: min(900px, calc(100% - 40px));
+        padding: 48px;
+        border: 1px solid #26314a;
+        border-radius: 24px;
+        background: rgba(15, 21, 36, 0.92);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 12px;
+        border: 1px solid rgba(57, 211, 142, 0.35);
+        border-radius: 999px;
+        color: #7ee2b8;
+        background: rgba(57, 211, 142, 0.08);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #39d38e;
+        box-shadow: 0 0 16px rgba(57, 211, 142, 0.8);
+      }
+
+      h1 {
+        margin: 24px 0 12px;
+        font-size: clamp(38px, 6vw, 68px);
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+      }
+
+      .lead {
+        max-width: 680px;
+        margin: 0;
+        color: #aeb9cc;
+        font-size: clamp(17px, 2vw, 21px);
+        line-height: 1.6;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-top: 38px;
+      }
+
+      .step {
+        min-height: 112px;
+        padding: 18px;
+        border: 1px solid #2a3652;
+        border-radius: 16px;
+        background: #11192b;
+      }
+
+      .step strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .step span {
+        color: #8997af;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #26314a;
+        color: #748199;
+        font-size: 14px;
+      }
+
+      @media (max-width: 720px) {
+        main {
+          padding: 30px;
+        }
+        .flow {
+          grid-template-columns: 1fr 1fr;
+        }
+        footer {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 430px) {
+        .flow {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="status">
+        <span class="dot"></span>Healthy and synchronized
+      </div>
+      <h1>Local Kubernetes GitOps</h1>
+      <p class="lead">
+        This application is running inside Kubernetes and is continuously
+        reconciled from Git by Argo CD.
+      </p>
+
+      <section class="flow" aria-label="GitOps delivery flow">
+        <article class="step">
+          <strong>1. Git</strong>
+          <span>Desired state is committed to the repository.</span>
+        </article>
+        <article class="step">
+          <strong>2. CI validation</strong>
+          <span>Helm, schemas and security controls verify each change.</span>
+        </article>
+        <article class="step">
+          <strong>3. Argo CD</strong>
+          <span
+            >Drift is detected and the approved revision is synchronized.</span
+          >
+        </article>
+        <article class="step">
+          <strong>4. Kubernetes</strong>
+          <span>k3d runs the declared workload across local agent nodes.</span>
+        </article>
+      </section>
+
+      <footer>
+        <span>Deployment method: Helm + Argo CD</span>
+        <span>Environment: k3d / k3s</span>
+      </footer>
+    </main>
+  </body>
 </html>
