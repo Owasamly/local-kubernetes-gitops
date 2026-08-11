@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1.29-alpine
+FROM nginxinc/nginx-unprivileged:1.30-alpine
 
 LABEL org.opencontainers.image.title="Local Kubernetes GitOps Demo"
 LABEL org.opencontainers.image.description="Minimal unprivileged web workload managed by Argo CD"
