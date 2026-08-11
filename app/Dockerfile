@@ -1,5 +1,11 @@
-FROM nginx:1.29-alpine
+FROM nginxinc/nginx-unprivileged:1.29-alpine
 
-COPY index.html /usr/share/nginx/html/index.html
+LABEL org.opencontainers.image.title="Local Kubernetes GitOps Demo"
+LABEL org.opencontainers.image.description="Minimal unprivileged web workload managed by Argo CD"
+LABEL org.opencontainers.image.source="https://github.com/Owasamly/local-kubernetes-gitops"
 
-EXPOSE 80
+COPY --chown=101:101 index.html /usr/share/nginx/html/index.html
+
+USER 101
+
+EXPOSE 8080

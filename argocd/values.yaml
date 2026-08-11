@@ -1,0 +1,16 @@
+global:
+  domain: localhost
+
+configs:
+  params:
+    server.insecure: true
+
+server:
+  service:
+    type: ClusterIP
+
+notifications:
+  enabled: false
+
+dex:
+  enabled: false
